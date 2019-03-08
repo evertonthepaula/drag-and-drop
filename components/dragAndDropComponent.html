@@ -1,0 +1,129 @@
+<template id="dragAndDropComponent">
+    <style>
+      .component-test{
+          background: #f08f00;
+      }
+    </style>
+    
+    <div class="component-test" draggable="true">
+        <slot></slot>
+    </div>
+</template>
+
+<script>
+    class dragAndDropComponent extends HTMLElement {
+        constructor() {
+            super();
+            const template = document.currentScript.ownerDocument.querySelector('template');
+            const dataMode = this.dataset.mode;
+            const shadowRoot = this.attachShadow({ mode: dataMode });
+            const dragSrcEl = null;
+
+            shadowRoot.appendChild(template.content.cloneNode(true));
+
+            this.addEventListener('dragstart', this.handleDragStart, false);
+            this.addEventListener('dragenter', this.handleDragEnter, false)
+            this.addEventListener('dragover', this.handleDragOver, false);
+            this.addEventListener('dragleave', this.handleDragLeave, false);
+            this.addEventListener('drop', this.handleDrop, false);
+            this.addEventListener('dragend', this.handleDragEnd, false);
+        }
+
+        handleDragStart(e) {
+            // console.log('DragStart');
+
+            this.style.opacity = '0.4';
+
+            sessionStorage.setItem('chave', this);
+
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/html', this.innerHTML);
+        }
+
+        handleDragEnter(e) {
+
+            // console.log('DragEnter');
+
+            this.classList.add('over');
+        }
+
+        handleDragOver(e) {
+            // console.log('DragOver');
+
+            if (e.preventDefault) {
+                e.preventDefault();
+            }
+
+            e.dataTransfer.dropEffect = 'move';
+            return false;
+        }
+
+        handleDragLeave(e) {
+            // console.log('DragLeave');
+
+            this.classList.remove('over');
+        }
+
+        handleDrop(e) {
+            e.stopPropagation();
+            e.preventDefault();
+
+            const files = e.dataTransfer.files;
+
+            if (files.length > 0) {
+                const file = files[0];
+
+                if (!file.type.match('image.*')) {
+                    console.error(new Error('Your file is not of type image!'));
+                    return false;
+                }
+
+                loadImage(file).then(
+                    img64 => this.innerHTML = `<img src="${img64}" alt="">`,
+                    error => console.error(new Error(error))
+                );
+
+                return false;
+            }
+            
+            let dragSrcEl = sessionStorage.getItem('chave');
+            
+            if (dragSrcEl != this) {
+                dragSrcEl.innerHTML = this.innerHTML;
+                this.innerHTML = e.dataTransfer.getData('text/html');
+            }
+
+            return false;
+        }
+
+        loadImage(file) {
+            return new Promise(function (resolve, reject) {
+                const reader = new FileReader();
+
+                reader.onload = function (event) {
+                    resolve(event.target.result);
+                    return true;
+                };
+
+                reader.onerror = function (error) {
+                    resolve(error);
+                    return false;
+                }
+
+                reader.readAsDataURL(file);
+            });
+        }
+
+        handleDragEnd(e) {
+            // console.log('DragEnd');
+            this.classList.remove('over');
+        }
+
+    }
+
+    if (!'customElements' in window) {
+        console.error(new Error('Seu browser não suporta a customElements'));
+    }
+
+    customElements.define('drag-and-drop', dragAndDropComponent);
+</script>

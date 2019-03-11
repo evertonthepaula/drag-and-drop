@@ -1,7 +1,7 @@
-import Cell from './Cell.js';
+import LayoutContainer from './LayoutContainer.js';
 
 if(!'customElements' in window) {
     console.error( new Error('Seu browser não suporta a customElements') );
 }
 
-customElements.define('dnd-cell', Cell);
+customElements.define('layout-container', LayoutContainer);

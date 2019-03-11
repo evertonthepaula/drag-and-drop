@@ -7,53 +7,18 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="module" src="./container/define.js"></script>
     <script type="module" src="./cell/define.js"></script>
 </head>
 
 <body>
-
-    <style>
-        .container {
-            display: grid;
-            grid-template-columns: repeat(12, 8.3333%);
-            grid-template-rows: 100% 100% auto;
-            grid-column-gap: 10px;
-            grid-row-gap: 15px;
-        }
-    </style>
-
-
-    <section class="container">
-        <layout-cell data-colum-start="1" data-colum-end="4">teste</layout-cell>
-        <div data-colum-start="1" data-colum-end="4">xablau</div>
-        <layout-cell>teste</layout-cell>
-
-        <div>xablau</div>
-        <div>xablau</div>
-        <div>xablau</div>
-        <div>xablau</div>
-        <div>xablau</div>
-        <div>xablau</div>
-        <div>xablau</div>
-        <div>xablau</div>
-        <div>xablau</div>
-        <div>xablau</div>
-        <div>xablau</div>
-        <div>xablau</div>
-        <div>xablau</div>
-        <div>xablau</div>
-        <div>xablau</div>
-        <div>xablau</div>
-        <div>xablau</div>
-        <div>xablau</div>
-        <div>xablau</div>
-        <div>xablau</div>
-        <div>xablau</div>
-        <div>xablau</div>
-        <div>xablau</div>
-    </section>
-
-
+    <layout-container>
+        <dnd-cell data-colum-start="1" data-colum-end="4">teste</dnd-cell>
+        <dnd-cell data-colum-start="4" data-colum-end="6">teste</dnd-cell>
+        <dnd-cell data-colum-start="6" data-colum-end="7">teste</dnd-cell>
+        <dnd-cell data-colum-start="8" data-colum-end="9">teste</dnd-cell>
+        <dnd-cell data-colum-start="9" data-colum-end="10">teste</dnd-cell>
+        <dnd-cell data-colum-start="10" data-colum-end="11">teste</dnd-cell>
+    </layout-container>
 </body>
-
 </html>

@@ -1,24 +1,46 @@
 <!DOCTYPE html>
 <html class="no-js">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <script type="module" src="./container/define.js"></script>
     <script type="module" src="./cell/define.js"></script>
 </head>
 
+<style>
+    .container {
+        /* background-color: #45f945;
+        text-align: center; */
+    }
+</style>
+
 <body>
+    <div class="container">
+        <layout-container>
+            <dnd-cell data-colum-start="1" data-colum-end="4">teste</dnd-cell>
+            <dnd-cell data-colum-start="4" data-colum-end="6">teste</dnd-cell>
+            <dnd-cell data-colum-start="6" data-colum-end="8">teste</dnd-cell>
+            <dnd-cell data-colum-start="8" data-colum-end="9">teste</dnd-cell>
+            <dnd-cell data-colum-start="9" data-colum-end="10">teste</dnd-cell>
+            <dnd-cell data-colum-start="10" data-colum-end="11">teste</dnd-cell>
+            <dnd-cell data-colum-start="11" data-colum-end="12">teste</dnd-cell>
+        </layout-container>
+    </div>
+
+    <br><hr><br>
+
     <layout-container>
         <dnd-cell data-colum-start="1" data-colum-end="4">teste</dnd-cell>
         <dnd-cell data-colum-start="4" data-colum-end="6">teste</dnd-cell>
-        <dnd-cell data-colum-start="6" data-colum-end="7">teste</dnd-cell>
+        <dnd-cell data-colum-start="6" data-colum-end="8">teste</dnd-cell>
         <dnd-cell data-colum-start="8" data-colum-end="9">teste</dnd-cell>
         <dnd-cell data-colum-start="9" data-colum-end="10">teste</dnd-cell>
         <dnd-cell data-colum-start="10" data-colum-end="11">teste</dnd-cell>
+        <dnd-cell data-colum-start="11" data-colum-end="12">teste</dnd-cell>
     </layout-container>
 </body>
 </html>
